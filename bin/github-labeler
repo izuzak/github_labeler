@@ -2,7 +2,6 @@
 
 require "commander"
 require "json"
-require "pry"
 require "github-labeler"
 
 ARGV.push('-h') if ARGV.empty?
@@ -11,7 +10,7 @@ cli = HighLine.new($stdin, $stderr)
 
 Commander.configure do
   program :name, 'GitHub Labeler'
-  program :version, '0.1.0'
+  program :version, '0.2.0'
   program :description, 'Simple program for managing issue labels across GitHub repositories.'
 
   global_option '--verbose', "Enable output of detailed debugging information to STDERR"

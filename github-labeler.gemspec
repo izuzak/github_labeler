@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name          = 'github-labeler'
-  s.version       = '0.1.0'
+  s.version       = '0.2.0'
   s.date          = '2015-08-20'
   s.summary       = 'Utility for running actions on issue labels in groups of GitHub repositories'
   s.authors       = ['Ivan Zuzak']
