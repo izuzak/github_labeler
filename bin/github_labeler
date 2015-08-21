@@ -2,7 +2,7 @@
 
 require "commander"
 require "json"
-require "github-labeler"
+require "github_labeler"
 
 ARGV.push('-h') if ARGV.empty?
 
@@ -10,7 +10,7 @@ cli = HighLine.new($stdin, $stderr)
 
 Commander.configure do
   program :name, 'GitHub Labeler'
-  program :version, '0.2.0'
+  program :version, '0.1.0'
   program :description, 'Simple program for managing issue labels across GitHub repositories.'
 
   global_option '--verbose', "Enable output of detailed debugging information to STDERR"
@@ -18,14 +18,14 @@ Commander.configure do
   global_option '--token STRING', String, "GitHub OAuth token for making API calls. If not specified, the GITHUB_OAUTH_TOKEN environment variable is used. Create a token here: https://github.com/settings/token"
 
   command :duplicate do |c|
-    c.syntax = 'github-labeler duplicate [options]'
+    c.syntax = 'github_labeler duplicate [options]'
     c.description = 'Duplicate labels from one repository to another'
 
     c.option '-s', '--source STRING', String, '(required) Source repository to copy labels from (USER/REPO)'
     c.option '-d', '--destination STRING', String, '(required) Destination repository to copy labels to (USER/REPO), or name of JSON file with list of repositories'
 
-    c.example "Destination is repository name", "github-labeler duplicate -s github/linguist -d foo/bar"
-    c.example "Destinations are specified in JSON file", "github-labeler duplicate -s github/linguist -d dest.json"
+    c.example "Destination is repository name", "github_labeler duplicate -s github/linguist -d foo/bar"
+    c.example "Destinations are specified in JSON file", "github_labeler duplicate -s github/linguist -d dest.json"
 
     c.action do |args, options|
       options.default \
@@ -54,12 +54,12 @@ Commander.configure do
   end
 
   command :export do |c|
-    c.syntax = 'github-labeler export [options]'
+    c.syntax = 'github_labeler export [options]'
     c.description = 'Export a list of labels from a repository or list of repositories'
 
     c.option '-r', '--repo STRING', String, '(required) Repository from which to extract labels (USER/REPO)'
 
-    c.example "Repository is repository name", "github-labeler export -r foo/bar"
+    c.example "Repository is repository name", "github_labeler export -r foo/bar"
 
     c.action do |args, options|
       options.default \
@@ -81,12 +81,12 @@ Commander.configure do
   end
 
   command :execute do |c|
-    c.syntax = 'github-labeler execute [options]'
+    c.syntax = 'github_labeler execute [options]'
     c.description = 'Execute changes previously created by the program'
 
     c.option '-c', '--changes STRING', String, '(required) Name of JSON file with list of changes'
 
-    c.example "Changes are specified in JSON file", "github-labeler export -c changes.json"
+    c.example "Changes are specified in JSON file", "github_labeler export -c changes.json"
 
     c.action do |args, options|
       options.default \
@@ -108,14 +108,14 @@ Commander.configure do
   end
 
   command :add do |c|
-    c.syntax = 'github-labeler add [options]'
+    c.syntax = 'github_labeler add [options]'
     c.description = 'Add one or more label to one or more repositories'
 
     c.option '-l', '--labels STRING', String, '(required) Label (NAME#COLOR) or name of JSON file with list of labels'
     c.option '-r', '--repos STRING', String, '(required) Destination repository to add labels to (USER/REPO) or name of JSON file with list of repositories'
 
-    c.example "Label is a string and destination repo is repository name", "github-labeler add -r github/linguist -l api#c7def8"
-    c.example "Labels and repositories are specified in JSON files", "github-labeler add -r repos.json -l labels.json"
+    c.example "Label is a string and destination repo is repository name", "github_labeler add -r github/linguist -l api#c7def8"
+    c.example "Labels and repositories are specified in JSON files", "github_labeler add -r repos.json -l labels.json"
 
     c.action do |args, options|
       options.default \
@@ -153,14 +153,14 @@ Commander.configure do
   end
 
   command :delete do |c|
-    c.syntax = 'github-labeler delete [options]'
+    c.syntax = 'github_labeler delete [options]'
     c.description = 'Delete one or more label from one or more repositories'
 
     c.option '-l', '--labels STRING', String, '(required) Label (NAME) or name of JSON file with list of labels'
     c.option '-r', '--repos STRING', String, '(required) Destination repository to delete labels from (USER/REPO) or name of JSON file with list of repositories'
 
-    c.example "Label is a string and destination repo is repository name", "github-labeler delete -r github/linguist -l api"
-    c.example "Labels and repositories are specified in JSON files", "github-labeler delete -r repos.json -l labels.json"
+    c.example "Label is a string and destination repo is repository name", "github_labeler delete -r github/linguist -l api"
+    c.example "Labels and repositories are specified in JSON files", "github_labeler delete -r repos.json -l labels.json"
 
     c.action do |args, options|
       options.default \
@@ -197,14 +197,14 @@ Commander.configure do
   end
 
   command :rename do |c|
-    c.syntax = 'github-labeler rename [options]'
+    c.syntax = 'github_labeler rename [options]'
     c.description = 'Rename one or more labels in one or more repositories'
 
     c.option '-l', '--labels STRING', String, '(required) Label (OLDNAME/NEWNAME) or name of JSON file with list of labels'
     c.option '-r', '--repos STRING', String, '(required) Destination repository to rename labels in (USER/REPO) or name of JSON file with list of repositories'
 
-    c.example "Label is a string and destination repo is repository name", "github-labeler rename -r github/linguist -l design/ui"
-    c.example "Labels and repositories are specified in JSON files", "github-labeler rename -r repos.json -l labels.json"
+    c.example "Label is a string and destination repo is repository name", "github_labeler rename -r github/linguist -l design/ui"
+    c.example "Labels and repositories are specified in JSON files", "github_labeler rename -r repos.json -l labels.json"
 
     c.action do |args, options|
       options.default \
@@ -242,14 +242,14 @@ Commander.configure do
   end
 
   command :recolor do |c|
-    c.syntax = 'github-labeler recolor [options]'
+    c.syntax = 'github_labeler recolor [options]'
     c.description = 'Recolor one or more labels in one or more repositories'
 
     c.option '-l', '--labels STRING', String, '(required) Label (NAME#COLOR) or name of JSON file with list of labels'
     c.option '-r', '--repos STRING', String, '(required) Destination repository to recolor labels in (USER/REPO) or name of JSON file with list of repositories'
 
-    c.example "Label is a string and destination repo is repository name", "github-labeler recolor -r github/linguist -l api#c7def8"
-    c.example "Labels and repositories are specified in JSON files", "github-labeler recolor -r repos.json -l labels.json"
+    c.example "Label is a string and destination repo is repository name", "github_labeler recolor -r github/linguist -l api#c7def8"
+    c.example "Labels and repositories are specified in JSON files", "github_labeler recolor -r repos.json -l labels.json"
 
     c.action do |args, options|
       options.default \

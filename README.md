@@ -7,7 +7,7 @@ Built using [Octokit](https://github.com/octokit/octokit.rb), [commander](https:
 # Install
 
 ```
-gem install github-labeler
+gem install github_labeler
 ```
 
 # Usage
@@ -15,13 +15,13 @@ gem install github-labeler
 Run this to see the list of available commands and options, and also examples:
 
 ```
-github-labeler help
+github_labeler help
 ```
 
 Commands are executed like this:
 
 ```
-github-labeler <command> [options]
+github_labeler <command> [options]
 ```
 
 Available commands:
@@ -37,16 +37,16 @@ Available commands:
 To see the list of options and usage examples for a specific command, run this:
 
 ```
-github-labeler help <command>
+github_labeler help <command>
 ```
 
 There are several global options:
 
-* `--token` - Tells `github-labeler` which token to use for making [authenticated](https://developer.github.com/v3/#authentication) GitHub API calls. If `--token` is not used, `github-labeler` will look for it in the `GITHUB_OAUTH_TOKEN` environment variable. You can create a token [here](https://github.com/settings/tokens). The token needs to have `public_repo` [scope](https://developer.github.com/v3/oauth/#scopes) if the repositories you're working with are public, or `repo` scope if the repositories you're working with are private.
+* `--token` - Tells `github_labeler` which token to use for making [authenticated](https://developer.github.com/v3/#authentication) GitHub API calls. If `--token` is not used, `github_labeler` will look for it in the `GITHUB_OAUTH_TOKEN` environment variable. You can create a token [here](https://github.com/settings/tokens). The token needs to have `public_repo` [scope](https://developer.github.com/v3/oauth/#scopes) if the repositories you're working with are public, or `repo` scope if the repositories you're working with are private.
 
-* `--verbose` - Tells `github-labeler` to output detailed debugging information to `STDERR`.
+* `--verbose` - Tells `github_labeler` to output detailed debugging information to `STDERR`.
 
-* `--execute` - Tells `github-labeler` to execute the required changes immediately, without asking for confirmation. Without this option, you will be asked if you want to execute the changes. In addition, `github-labeler` will output the changes to STDOUT so you can redirect the output to a file and then use the `execute` command later to execute those changes.
+* `--execute` - Tells `github_labeler` to execute the required changes immediately, without asking for confirmation. Without this option, you will be asked if you want to execute the changes. In addition, `github_labeler` will output the changes to STDOUT so you can redirect the output to a file and then use the `execute` command later to execute those changes.
 
 # Use cases and examples
 
@@ -57,7 +57,7 @@ Here are a few common use-cases and examples of running commands. Note: I've def
 Copy labels from repository `izuzak/labels1` to repository `izuzak/labels2`:
 
 ```
-github-labeler duplicate --source=izuzak/labels1 --destination=izuzak/labels2 --verbose
+github_labeler duplicate --source=izuzak/labels1 --destination=izuzak/labels2 --verbose
 ```
 
 #### Add a label to a repository or list of repositories
@@ -65,13 +65,13 @@ github-labeler duplicate --source=izuzak/labels1 --destination=izuzak/labels2 --
 Add label `api` with color `c7def8` to a single repository:
 
 ```
-github-labeler add -r izuzak/labels1 -l api#c7def8
+github_labeler add -r izuzak/labels1 -l api#c7def8
 ```
 
 Add the same label to a list of repositories:
 
 ```
-github-labeler add -r repos.json -l api#c7def8
+github_labeler add -r repos.json -l api#c7def8
 ```
 
 Where `repos.json` is a JSON file with the following format:
@@ -93,20 +93,20 @@ A simpler format can be used as well:
 [ "izuzak/labels1", "izuzak/labels2" ]
 ```
 
-You can get such a list from [GitHub API](https://developer.github.com/v3/) endpoints which return a list of repositories, for example [this](https://developer.github.com/v3/repos/#list-organization-repositories): https://api.github.com/orgs/github/repos. The response will include a bunch of other fields, but those are ignored and only `full_name` is used by `github-labeler`.
+You can get such a list from [GitHub API](https://developer.github.com/v3/) endpoints which return a list of repositories, for example [this](https://developer.github.com/v3/repos/#list-organization-repositories): https://api.github.com/orgs/github/repos. The response will include a bunch of other fields, but those are ignored and only `full_name` is used by `github_labeler`.
 
 #### Add a list of labels to a repository
 
 Export the list of labels from one repository or construct the file manually:
 
 ```
-github-labeler export -r izuzak/labels1 > labels.json
+github_labeler export -r izuzak/labels1 > labels.json
 ```
 
 Make changes to the list of labels in `labels.json`, and then add them to a repository:
 
 ```
-github-labeler add -l labels.json -r izuzak/labels2
+github_labeler add -l labels.json -r izuzak/labels2
 ```
 
 #### Update labels
@@ -114,13 +114,13 @@ github-labeler add -l labels.json -r izuzak/labels2
 Rename a label `design` to `ui` in a single repository:
 
 ```
-github-labeler rename -r izuzak/labels1 -l design/ui
+github_labeler rename -r izuzak/labels1 -l design/ui
 ```
 
 Change the color of label `ui` to `c7def8` in a single repository:
 
 ```
-github-labeler recolor -r izuzak/labels1 -l ui#c7def8
+github_labeler recolor -r izuzak/labels1 -l ui#c7def8
 ```
 
 # Roadmap
