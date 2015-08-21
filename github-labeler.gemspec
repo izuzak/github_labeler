@@ -13,4 +13,6 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency('commander', '~> 4.3')
   s.add_runtime_dependency('octokit', '~> 4.0')
+
+  s.add_development_dependency('rspec', '~> 3.3')
 end

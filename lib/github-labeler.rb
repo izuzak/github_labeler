@@ -6,7 +6,7 @@ Octokit.auto_paginate = true
 
 class GitHubLabeler
   attr_accessor :client,          # Octokit client for acesing the API
-                :repo_labels      # Labels cache for repositories
+                :repo_labels,     # Labels cache for repositories
                 :logger           # Logger for writing debugging info
 
   def initialize(token, verbose=false, labels=nil)
