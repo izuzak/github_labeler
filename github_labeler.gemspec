@@ -1,13 +1,13 @@
 Gem::Specification.new do |s|
-  s.name          = 'github-labeler'
-  s.version       = '0.2.0'
-  s.date          = '2015-08-20'
+  s.name          = 'github_labeler'
+  s.version       = '0.1.0'
+  s.date          = '2015-08-21'
   s.summary       = 'Utility for running actions on issue labels in groups of GitHub repositories'
   s.authors       = ['Ivan Zuzak']
   s.email         = 'izuzak@gmail.com'
-  s.files         = ['lib/github-labeler.rb']
-  s.executables   = ['github-labeler']
-  s.homepage      = 'https://github.com/izuzak/github-labeler'
+  s.files         = ['lib/github_labeler.rb']
+  s.executables   = ['github_labeler']
+  s.homepage      = 'https://github.com/izuzak/github_labeler'
   s.license       = 'MIT'
   s.require_paths = ['lib']
 

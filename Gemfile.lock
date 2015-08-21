@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    github-labeler (0.2.0)
+    github_labeler (0.1.0)
       commander (~> 4.3)
       octokit (~> 4.0)
 
@@ -39,5 +39,5 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  github-labeler!
+  github_labeler!
   rspec (~> 3.3)
